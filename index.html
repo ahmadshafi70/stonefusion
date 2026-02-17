@@ -9,116 +9,276 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+            .big-chart-img {
+              width: 100%;
+              margin-left: -42px;
+            }
+            .mb {
+              font-family: Nunito;
+              font-weight: 500;
+              font-size: 11px;
+              line-height: 100%;
+              letter-spacing: 0%;
+              color: #101828;
+            }
+            .health-header {
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 16px;
+            }
+
+            .health-header h2 {
+              margin: 0;
+              font-size: 21px;
+            }
+
+            .uptime {
+              font-size: 13px;
+              color: #64748b;
+              font-weight: 500;
+            }
+            .split2 {
+              margin-top: 15px;
+            }
+            .alerts {
+        padding: 20px;
+      }
+
+      .alert-item {
+        display: flex;
+        gap: 14px;
+        padding: 16px;
+        border-radius: 10px;
+        margin-bottom: 14px;
+        border: 1px solid #e5e7eb;
+      }
+
+      .alert-icon {
+        font-size: 18px;
+        margin-top: 3px;
+      }
+
+      .alert-content h4 {
+        margin: 0 0 4px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .alert-content p {
+        margin: 0;
+        font-size: 13px;
+        color: #64748b;
+      }
+      .toggle-btn img {
+        display: none;
+       
+      } 
+
+      /* Default = show inactive icon */
+      .toggle-btn .icon-inactive {
+        display: block;
+      }
+
+      /* When active = show active icon */
+      .toggle-btn.active .icon-active {
+        display: block;
+      }
+
+      .toggle-btn.active .icon-inactive {
+        display: none;
+      }
+.kpis-gauge p {
+  margin: 0;
+}
+
+.kpis-gauge p small {
+  display: block;
+  margin-top: 2px;
+}
+
+.kpis-gauge > div {
+  margin-bottom: 18px;
+}
+.gauge-left {
+  display: inline-flex;
+  gap:20px;
+}
+.gauge-legend {
+  display: flex;
+  flex-direction: column;   /* stack vertically */
+  gap: 8px;                 /* space between Memory & CPU */
+  margin-top: 38px;
+  font-size: 18px;
+}
+
+.legend-row {
+  display: flex;
+  
+  width: 100px; /* adjust if needed */
+}
+.gauge-view {
+    display: grid;
+    grid-template-columns: 1fr 1.85fr !important;
+}
+.health-toggle.shift-up {
+  margin-top: -37px;
+}
+.kpi-row {
+  display: flex;
+  align-items: center;
+  margin-bottom:10px ;
+
+}
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+}
+
+.kpi-meter {
+  height: 10px;
+    margin: 5px 8px 3px;
+    max-width: 185px;
+  flex: 1; /* bar takes remaining space */
+}
+.kpi-value {
+  font-weight: 800;
+}
+.pagination {
+
+  align-items: center;
+  gap: 8px;
+}
+
+.page,
+.pagination em {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f0f2f5;   /* circle background */
+  cursor: pointer;
+  font-style: normal;
+  transition: 0.2s ease;
+}
+
+.page:hover {
+  background: #dbeafe;
+}
+
+.pagination em.active {
+  background: #0e1d7d;
+  color: #fff;
+}
+.table-footer {
+  display: flex;
+  justify-content: flex-end;  /* pushes pagination to right */
+}
+
+
+    </style>
   </head>
   <body>
     <div class="app">
       <aside class="sidebar">
         <div class="brand">
-          <svg class="stonefly-logo" viewBox="0 0 170 120" aria-hidden="true">
-            <g fill="#8ea6cf">
-              <polygon points="85,0 105,8 105,22 85,15" />
-              <polygon points="85,0 65,8 65,22 85,15" />
-              <polygon points="20,36 55,40 40,48 7,42" />
-              <polygon points="150,36 115,40 130,48 163,42" />
-              <polygon points="35,50 62,54 49,63 24,58" />
-              <polygon points="135,50 108,54 121,63 146,58" />
-              <polygon points="50,65 73,70 60,78 40,72" />
-              <polygon points="120,65 97,70 110,78 130,72" />
-              <polygon points="64,80 85,85 70,94 52,87" />
-              <polygon points="106,80 85,85 100,94 118,87" />
-              <polygon points="85,48 105,52 85,58 65,52" fill="#1c2a92" />
-            </g>
-          </svg>
+          <img class="stonefly-logo" src="images/stonefly.png" />
+
           <div class="brand-text">
             <h1>Stonefusion</h1>
             <small>SC-192-10.18.10.250</small>
           </div>
         </div>
         <div class="dash-head">
-          <span><i class="fa fa-expand"></i></span>
+          <span><img src="images/expand.png" /></span>
           <button>Expand All</button>
         </div>
         <nav class="menu">
           <p>Dashboard</p>
           <a class="active">
-            <i class="fa-solid fa-table-cells-large i"></i>
+            <img class="sidebar-icon" src="images/dashboard.png" />
             Dashboard
           </a>
           <a>
-            <i class="fa-solid fa-wave-square i"></i>
+            <img class="sidebar-icon" src="images/systemHealth.png" />
             System Health
           </a>
           <p>Storage Services</p>
           <a>
-            <i class="fa-regular fa-hard-drive i"></i>
+            <img class="sidebar-icon" src="images/block storage.png" />
             Block Storage
           </a>
           <a>
-            <i class="fa-regular fa-folder-open i"></i>
+            <img class="sidebar-icon" src="images/File Storage.png" />
             File Storage
           </a>
           <a>
-            <i class="fa-solid fa-cubes-stacked i"></i>
+            <img class="sidebar-icon" src="images/objectStorage.png" />
             Object Storage
           </a>
           <p>Resources</p>
           <a>
-            <i class="fa-solid fa-layer-group i"></i>
+            <img class="sidebar-icon" src="images/StoragePools.png" />
             Storage Pools
           </a>
           <a>
-            <i class="fa-regular fa-window-maximize i"></i>
+            <img class="sidebar-icon" src="images/LUNS.png" />
             Volumes / LUNs
           </a>
           <a>
-            <i class="fa-regular fa-hdd i"></i>
+            <img class="sidebar-icon" src="images/DiskandSSD.png" />
             Disks & SSDs
           </a>
           <p>Performance</p>
           <a>
-            <i class="fa-solid fa-chart-column i"></i>
+            <img class="sidebar-icon" src="images/metrics.png" />
             Metrics
           </a>
           <a>
-            <i class="fa-solid fa-gauge-high i"></i>
+            <img class="sidebar-icon" src="images/IOPs.png" />
             IOPS
           </a>
           <a>
-            <i class="fa-solid fa-bolt i"></i>
+            <img class="sidebar-icon" src="images/Througput.png" />
             Throughput
           </a>
           <p>Security</p>
           <a>
-            <i class="fa-solid fa-user-lock i"></i>
+            <img class="sidebar-icon" src="images/AccessControl.png" />
             Access Control
           </a>
           <a>
-            <i class="fa-solid fa-shield-halved i"></i>
+            <img class="sidebar-icon" src="images/Encryption.png" />
             Encryption
           </a>
           <a>
-            <i class="fa-regular fa-file-lines i"></i>
+            <img class="sidebar-icon" src="images/Audit Logs.png" />
             Audit Logs
           </a>
           <p>System</p>
           <a>
-            <i class="fa-solid fa-server i"></i>
+            <img class="sidebar-icon" src="images/ClusterStatus.png" />
             Cluster Status
           </a>
           <a>
-            <i class="fa-solid fa-network-wired i"></i>
+            <img class="sidebar-icon" src="images/Nodes.png" />
             Nodes
           </a>
           <a>
-            <i class="fa-regular fa-file i"></i>
+            <img class="sidebar-icon" src="images/Logs.png" />
             Logs
           </a>
           <a>
-            <i class="fa-solid fa-gear i"></i>
+            <img class="sidebar-icon" src="images/Setting.png" />
             Settings
           </a>
           <a>
-            <i class="fa-regular fa-circle-question i"></i>
+            <img class="sidebar-icon" src="images/support.png" />
             Support
           </a>
         </nav>
@@ -126,7 +286,7 @@
 
       <div class="right-fixed">
         <button><i class="fa-solid fa-gear"></i></button>
-        <button><i class="fa-regular fa-window-restore"></i></button>
+        <button><img src="images/fixed-youtube.png"></button>
         <button><i class="fa-regular fa-circle-question"></i></button>
       </div>
 
@@ -143,14 +303,14 @@
           </div>
           <div class="meta">
             <b>iSCSI IP</b>
-            --
+            SC-192-10.18.10.250
           </div>
           <div class="search-wrap"><input placeholder="Search volumes, hosts, targets..." /></div>
           <button class="alert-btn">ALERT</button>
           <div class="ticons">
-            <i class="fa-regular fa-moon"></i>
-            <i class="fa-regular fa-bell dot"></i>
-            <i class="fa-regular fa-user"></i>
+            <img src="images/header_moon.png" alt="">
+            <img src="images/header_bell.png" alt="">
+            <img src="images/header_man.png" alt="">
           </div>
         </header>
 
@@ -158,7 +318,10 @@
           <section class="card metrics">
             <div class="health-view view-bars active-view">
               <div class="health-left">
-                <h2>System Health</h2>
+                <div class="health-header">
+                  <h2>System Health</h2>
+                  <div class="uptime">Uptime 45d 12h 34m</div>
+                </div>
                 <div class="usage-stack">
                   <div class="usage-row">
                     <span>CPU Usage</span>
@@ -171,73 +334,81 @@
                     <b>52%</b>
                   </div>
                 </div>
-                <div class="uptime">Uptime 45d 12h 34m</div>
-                <div class="health-toggle">
-                  <button class="toggle-btn active" data-view="bars" title="Bars view">
-                    <i class="fa-solid fa-list"></i>
-                  </button>
-                  <button class="toggle-btn" data-view="gauge" title="Gauge view">
-                    <i class="fa-solid fa-gauge"></i>
-                  </button>
-                </div>
               </div>
               <div class="health-right">
                 <div class="kpis">
                   <div>
-                    <h4>
-                      Memory
-                      <b>63%</b>
-                    </h4>
-                    <div class="bar kpi-meter" data-value="63"></div>
+                    <div class="kpi-row">
+
+                        <div class="kpi-header">
+                          <span class="kpi-title">Memory</span>
+                          <span class="kpi-value">63%</span>
+                        </div>
+
+                        <div class="bar kpi-meter" data-value="63" style="--v: 63"></div>
+
+                      </div>
+
                     <small>
                       <span class="ico mem"></span>
-                      57 MB/s |
+                      57
+                      <span class="mb">MB/s</span>
+                      |
                       <span class="ico mem2"></span>
                       32 MB/s
+                      <span class="mb">MB/s</span>
                     </small>
                   </div>
                   <div>
                     <h4>Network In / Out</h4>
                     <small>
                       <span class="ico net"></span>
-                      57 MB/s |
+                      57
+                      <span class="mb">MB/s</span>
+                      |
                       <span class="ico net2"></span>
-                      32 MB/s
+                      32
+                      <span class="mb">MB/s</span>
                     </small>
                   </div>
                   <div>
                     <h4>Disk Read / Write</h4>
                     <small>
                       <span class="ico disk"></span>
-                      20 MB/s |
+                      20
+                      <span class="mb">MB/s</span>
+                      |
                       <span class="ico disk2"></span>
-                      61 MB/s
+                      61
+                      <span class="mb">MB/s</span>
                     </small>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="health-view view-gauge" hidden>
+            <div class="health-view view-gauge" style="display: none">
               <div class="health-left gauge-left">
-                <h2>System Health</h2>
+                <div class="health-header">
+                  <h2>System Health</h2>
+                  <div class="uptime">Uptime 45d 12h 34m</div>
+                </div>
                 <div class="gauge-pair">
-                  <div class="mini-arc" data-value="35"></div>
-                  <div class="mini-arc" data-value="13"></div>
+                  <img src="images/gauges_design.png" />
                 </div>
                 <div class="gauge-legend">
+                <div class="legend-row">
+                  <span>Memory:</span>
+                  <b>13%</b>
+                </div>
+
+                <div class="legend-row">
                   <span>CPU:</span>
                   <b>23%</b>
                 </div>
-                <div class="uptime">Uptime 45d 12h 34m</div>
-                <div class="health-toggle">
-                  <button class="toggle-btn" data-view="bars" title="Bars view">
-                    <i class="fa-solid fa-list"></i>
-                  </button>
-                  <button class="toggle-btn active" data-view="gauge" title="Gauge view">
-                    <i class="fa-solid fa-gauge"></i>
-                  </button>
-                </div>
+              </div>
+
+              
               </div>
               <div class="health-right">
                 <div class="kpis-gauge">
@@ -301,52 +472,71 @@
                 </div>
               </div>
             </div>
+          <div class="health-toggle">
+            <button class="toggle-btn active" data-view="bars">
+              <img class="icon-active" src="images/track_lines.png" alt="">
+              <img class="icon-inactive" src="images/track_inactive_lines.png" alt="">
+            </button>
+
+            <button class="toggle-btn" data-view="gauge">
+              <img class="icon-active" src="images/track_active.png" alt="">
+              <img class="icon-inactive" src="images/track_inactive.png" alt="">
+            </button>
+          </div>
           </section>
 
           <section class="grid4">
             <article class="card perf">
               <h3>Network Performance - Management</h3>
-              <div
-                class="chart-host small-chart"
-                data-values="12000,11800,12100,11900,12050,12300,12400,12250,12600,12800,13000"
-                data-xticks="01:00 PM,01:30 PM,02:00 PM,02:30 PM"
-                data-ymax="16000"
-              ></div>
-              <small>Sent 57 MB/s | Received 32 MB/s</small>
+              <div class="chart-host small-chart">
+                <img class="chart-img" src="images/Network chart.png" />
+              </div>
+              <small>
+                Sent 57
+                <span class="mb">MB/s</span>
+                | Received
+                <span class="mb">MB/s</span>
+              </small>
             </article>
             <article class="card perf">
               <h3>Network Performance - Data</h3>
-              <div
-                class="chart-host small-chart"
-                data-values="9000,9500,9300,9800,9700,10200,10100,10600,10900,10850,11100"
-                data-xticks="01:00 PM,01:30 PM,02:00 PM,02:30 PM"
-                data-ymax="16000"
-              ></div>
-              <small>Sent 57 MB/s | Received 32 MB/s</small>
+              <div class="chart-host small-chart">
+                <img class="chart-img" src="images/Network chart.png" />
+              </div>
+              <small>
+                Sent 57
+                <span class="mb">MB/s</span>
+                | Received
+                <span class="mb">MB/s</span>
+              </small>
             </article>
             <article class="card perf">
               <h3>Network Performance - Bonded Data</h3>
-              <div
-                class="chart-host small-chart"
-                data-values="10200,10300,10050,10600,10700,10800,11100,11300,11200,11500,11800"
-                data-xticks="01:00 PM,01:30 PM,02:00 PM,02:30 PM"
-                data-ymax="16000"
-              ></div>
-              <small>Sent 57 MB/s | Received 32 MB/s</small>
+              <div class="chart-host small-chart">
+                <img class="chart-img" src="images/Network chart.png" />
+              </div>
+              <small>
+                Sent 57
+                <span class="mb">MB/s</span>
+                | Received
+                <span class="mb">MB/s</span>
+              </small>
             </article>
             <article class="card perf">
               <h3>Network Performance - mpath</h3>
-              <div
-                class="chart-host small-chart"
-                data-values="8000,8500,8700,8900,9200,9100,9400,9600,9900,10200,10500"
-                data-xticks="01:00 PM,01:30 PM,02:00 PM,02:30 PM"
-                data-ymax="16000"
-              ></div>
-              <small>Sent 57 MB/s | Received 32 MB/s</small>
+              <div class="chart-host small-chart">
+                <img class="chart-img" src="images/Network chart.png" />
+              </div>
+              <small>
+                Sent 57
+                <span class="mb">MB/s</span>
+                | Received
+                <span class="mb">MB/s</span>
+              </small>
             </article>
           </section>
 
-          <section class="split2 storage-top">
+          <section class="split2 storage-top dedup">
             <article class="card">
               <h3 class="so-title">Storage Overview - Dedup</h3>
               <div class="stats">
@@ -363,7 +553,17 @@
                   <b>612 TB</b>
                 </div>
               </div>
-              <div class="bar" data-value="73"></div>
+              <div class="bar" data-value="100"></div>
+              <div class="legend">
+                <span>
+                  <i style="background: #4ca9ff"></i>
+                  NAS (16.5%)
+                </span>
+                <span>
+                  <i style="background: #274ecb"></i>
+                  OBJECT (5.8%)
+                </span>
+              </div>
             </article>
             <article class="card">
               <h3 class="so-title">Storage Overview - NAS Managed</h3>
@@ -450,13 +650,9 @@
 
           <section class="card chartWrap">
             <h3>Volume Growth Statistics</h3>
-            <div
-              class="chart-host"
-              id="volumeChart"
-              data-values="0,1200,2600,4100,5500,6500,7600,9200,10800,12600,14500,16000"
-              data-xticks="1 Month,2 Months,3 Months,4 Months,5 Months"
-              data-ymax="16000"
-            ></div>
+            <div class="chart-host">
+              <img class="big-chart-img" src="images/Application.png" />
+            </div>
           </section>
 
           <section class="split-mid mid">
@@ -484,44 +680,34 @@
                 <button class="car-btn prev">‹</button>
                 <div class="quick-track" id="quickTrack">
                   <div class="q">
-                    <i class="fa-solid fa-layer-group"></i>
+                    <img class="quick_san" src="images/cloudNative.png" alt="" />
                     <b>SAN</b>
                     <small>Manage SAN</small>
                   </div>
                   <div class="q active">
-                    <i class="fa-solid fa-cubes-stacked"></i>
+                    <img class="quick_san" src="images/quick_nas.png" alt="" />
                     <b>NAS</b>
                     <small>Manage NAS</small>
                   </div>
                   <div class="q">
-                    <i class="fa-solid fa-bullseye"></i>
+                    <img class="quick_san" src="images/quick_targetPortal.png" alt="" />
                     <b>Target Portal</b>
                     <small>Portal Settings</small>
                   </div>
                   <div class="q">
-                    <i class="fa-regular fa-folder"></i>
+                    <img class="quick_san" src="images/quick_resources.png" alt="" />
                     <b>Resources</b>
                     <small>View resources</small>
                   </div>
                   <div class="q">
-                    <i class="fa-regular fa-file-lines"></i>
+                    <img class="quick_san" src="images/quick_reports.png" alt="" />
                     <b>Reports</b>
                     <small>Generate reports</small>
                   </div>
                   <div class="q">
-                    <i class="fa-solid fa-chart-line"></i>
+                    <img class="quick_san" src="images/live_reports.png" alt="" />
                     <b>Live Stats</b>
                     <small>Real Time Statistics</small>
-                  </div>
-                  <div class="q">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <b>Security</b>
-                    <small>User Policies</small>
-                  </div>
-                  <div class="q">
-                    <i class="fa-solid fa-gear"></i>
-                    <b>Settings</b>
-                    <small>System setup</small>
                   </div>
                 </div>
                 <button class="car-btn next">›</button>
@@ -549,7 +735,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><div class="disk-cell"></div></td>
+                    <td><img src="images/resource_server.png" alt=""></td>
                     <td>AVAGO-MR9361-8i</td>
                     <td>14:2:0</td>
                     <td>
@@ -558,7 +744,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><div class="disk-cell"></div></td>
+                    <td><img src="images/resource_server.png" alt=""></td>
                     <td>AVAGO-MR9361-8i</td>
                     <td>14:2:0</td>
                     <td>
@@ -567,7 +753,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><div class="disk-cell"></div></td>
+                    <td><img src="images/resource_server.png" alt=""></td>
                     <td>AVAGO-MR9361-8i</td>
                     <td>14:2:0</td>
                     <td>
@@ -576,7 +762,25 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><div class="disk-cell"></div></td>
+                    <td><img src="images/resource_server.png" alt=""></td>
+                    <td>AVAGO-MR9361-8i</td>
+                    <td>14:2:0</td>
+                    <td>
+                      18% used
+                      <div class="bar mini" data-value="18"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><img src="images/resource_server.png" alt=""></td>
+                    <td>AVAGO-MR9361-8i</td>
+                    <td>14:2:0</td>
+                    <td>
+                      18% used
+                      <div class="bar mini" data-value="18"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><img src="images/resource_server.png" alt=""></td>
                     <td>AVAGO-MR9361-8i</td>
                     <td>14:2:0</td>
                     <td>
@@ -593,34 +797,151 @@
                   entries
                 </span>
                 <span>Showing 1 to 10 of 57 entries</span>
-                <span>
-                  Previous
-                  <em>1</em>
-                  2 3 4 5 6 Next
-                </span>
+                <span class="pagination">
+  Previous
+  <em class="active">1</em>
+
+  <span class="page">2</span>
+  <span class="page">3</span>
+  
+
+  Next
+</span>
+
               </div>
             </article>
-            <article class="card alerts">
-              <div class="table-head">
-                <h3>Alerts, Activity and Warnings</h3>
-                <div class="tabs">
-                  <b>All</b>
-                  <span>Activity</span>
-                  <span>Alerts</span>
-                  <span>Warnings</span>
-                </div>
-              </div>
-              <div class="al crit">Pool capacity critical</div>
-              <div class="al warn">High latency detected</div>
-              <div class="al warn">Snapshot retention warning</div>
-              <div class="al good">Volume created</div>
-              <div class="al info">Snapshot completed</div>
-              <div class="al info">Replication job completed</div>
-            </article>
-          </section>
+           <article class="card alerts">
+
+  <div class="table-head">
+    <h3>Alerts, Activity and Warnings</h3>
+    <div class="tabs">
+      <b>All</b>
+      <span>Activity</span>
+      <span>Alerts</span>
+      <span>Warnings</span>
+    </div>
+  </div>
+
+  <!-- Critical -->
+  <div class="alert-item crit">
+    <div class="alert-icon">
+      <img src="images/dangerous.png" alt="">
+    </div>
+    <div class="alert-content">
+      <h4>Pool capacity critical</h4>
+      <p>Storage Pool "prod-san-01" at 95% capacity</p>
+      <small>2 minutes ago</small>
+    </div>
+  </div>
+
+  <!-- Warning -->
+  <div class="alert-item warn">
+    <div class="alert-icon">
+      <img src="images/warning.png" alt="">
+    </div>
+    <div class="alert-content">
+      <h4>High latency detected</h4>
+      <p>Volume "vol-db-primary" experiencing latency spikes</p>
+      <small>15 minutes ago</small>
+    </div>
+  </div>
+
+  <div class="alert-item warn">
+    <div class="alert-icon">
+      <img src="images/warning.png" alt="">
+    </div>
+    <div class="alert-content">
+      <h4>Snapshot retention warning</h4>
+      <p>12 snapshots older than 30 days consuming 2.4 TB</p>
+      <small>1 hour ago</small>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div class="alert-item good">
+    <div class="alert-icon">
+      <img src="images/success.png" alt="">
+    </div>
+    <div class="alert-content">
+      <h4>Volume created</h4>
+      <p>vol-app-server-03 (500 GB) created successfully</p>
+      <small>5 minutes ago</small>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="alert-item info">
+    <div class="alert-icon">
+      <img src="images/info.png" alt="">
+    </div>
+    <div class="alert-content">
+      <h4>Snapshot completed</h4>
+      <p>Daily snapshot of vol-db-primary completed</p>
+      <small>12 minutes ago</small>
+    </div>
+  </div>
+
+  <div class="alert-item info">
+    <div class="alert-icon">
+      <img src="images/info2.png" alt="">
+    </div>
+    <div class="alert-content">
+      <h4>Replication job completed</h4>
+      <p>DR site sync: 45.2 GB replicated</p>
+      <small>28 minutes ago</small>
+    </div>
+  </div>
+
+  <div class="view-all">
+    <a href="#">View all Alerts, Activity and Warnings →</a>
+  </div>
+
+</article>
+
         </div>
       </main>
     </div>
     <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script>
+  $(document).ready(function () {
+    $('.toggle-btn').on('click', function () {
+      var view = $(this).data('view');
+
+      // Switch active button
+      $('.toggle-btn').removeClass('active');
+      $(this).addClass('active');
+
+      $('.health-view.active-view')
+        .removeClass('active-view')
+        .fadeOut(200, function () {
+
+          if (view === 'bars') {
+
+            $('.view-bars')
+              .css('grid-template-columns', '1fr 1fr')
+              .fadeIn(200)
+              .addClass('active-view');
+
+            // KEEP shift-up logic
+            $('.health-toggle').removeClass('shift-up');
+
+          } else {
+
+            $('.view-gauge')
+              .css('grid-template-columns', '1fr 1.85fr')
+              .fadeIn(200)
+              .addClass('active-view');
+
+            // KEEP shift-up logic
+            $('.health-toggle').addClass('shift-up');
+          }
+
+        });
+    });
+  });
+</script>
+
+
   </body>
 </html>
