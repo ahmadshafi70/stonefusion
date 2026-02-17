@@ -196,3 +196,36 @@ function updateUsage(rowIndex, newValue) {
 // Example:
 updateUsage(0, 27); // CPU → 67%
 updateUsage(1, 21); // Memory → 41%
+
+$(document).ready(function () {
+  $('.tab').on('click', function () {
+    var tab = $(this).data('tab');
+
+    // Switch active tab style
+    $('.tab').removeClass('active');
+    $(this).addClass('active');
+
+    if (tab === 'all') {
+      $('.alert-item').fadeIn(200);
+    } else {
+      $('.alert-item').hide();
+      $('.alert-item[data-type="' + tab + '"]').fadeIn(200);
+    }
+  });
+});
+document.addEventListener('DOMContentLoaded', function () {
+  const track = document.getElementById('quickTrack');
+  const prevBtn = document.querySelector('.car-btn.prev');
+  const nextBtn = document.querySelector('.car-btn.next');
+
+  const card = track.querySelector('.q');
+  const cardWidth = card.offsetWidth + 20; // 20 = gap
+
+  nextBtn.addEventListener('click', function () {
+    track.scrollLeft += cardWidth;
+  });
+
+  prevBtn.addEventListener('click', function () {
+    track.scrollLeft -= cardWidth;
+  });
+});

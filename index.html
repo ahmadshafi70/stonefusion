@@ -179,7 +179,93 @@
   display: flex;
   justify-content: flex-end;  /* pushes pagination to right */
 }
+.right-fixed {
+  position: fixed;
+ 
+  top: 40%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
+.right-fixed button {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* THIS centers content */
+
+  border: none;
+  background: #002d62;
+  cursor: pointer;
+}
+
+.tabs .tab {
+  background: #F3F4F6;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.tabs .tab.active {
+  background: #002d62;
+  color: #ffff;
+  font-weight: 600;
+}
+.carousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quick-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
+  flex: 1;
+}
+
+.quick-track::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.q {
+  min-width: 140px; /* important for scroll */
+  flex: 0 0 auto;
+}
+.carousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.quick-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  flex: 1;
+  padding: 10px 0;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.quick-track::-webkit-scrollbar {
+  display: none;
+}
+
+.q {
+
+  cursor: pointer;
+}
 
     </style>
   </head>
@@ -709,6 +795,11 @@
                     <b>Live Stats</b>
                     <small>Real Time Statistics</small>
                   </div>
+                  <div class="q">
+                    <img class="quick_san" src="images/live_reports.png" alt="" />
+                    <b>Live Stats</b>
+                    <small>Real Time Statistics</small>
+                  </div>
                 </div>
                 <button class="car-btn next">›</button>
               </div>
@@ -814,16 +905,17 @@
 
   <div class="table-head">
     <h3>Alerts, Activity and Warnings</h3>
-    <div class="tabs">
-      <b>All</b>
-      <span>Activity</span>
-      <span>Alerts</span>
-      <span>Warnings</span>
-    </div>
+   <div class="tabs">
+  <span class="tab active" data-tab="all">All</span>
+  <span class="tab" data-tab="activity">Activity</span>
+  <span class="tab" data-tab="alerts">Alerts</span>
+  <span class="tab" data-tab="warnings">Warnings</span>
+</div>
+
   </div>
 
   <!-- Critical -->
-  <div class="alert-item crit">
+  <div class="alert-item crit" data-type="alerts">
     <div class="alert-icon">
       <img src="images/dangerous.png" alt="">
     </div>
@@ -835,7 +927,7 @@
   </div>
 
   <!-- Warning -->
-  <div class="alert-item warn">
+  <div class="alert-item warn" data-type="warnings">
     <div class="alert-icon">
       <img src="images/warning.png" alt="">
     </div>
@@ -846,7 +938,7 @@
     </div>
   </div>
 
-  <div class="alert-item warn">
+  <div class="alert-item warn"   data-type="warnings">
     <div class="alert-icon">
       <img src="images/warning.png" alt="">
     </div>
@@ -858,7 +950,7 @@
   </div>
 
   <!-- Success -->
-  <div class="alert-item good">
+  <div class="alert-item good" data-type="activity">
     <div class="alert-icon">
       <img src="images/success.png" alt="">
     </div>
@@ -870,7 +962,7 @@
   </div>
 
   <!-- Info -->
-  <div class="alert-item info">
+  <div class="alert-item info" data-type="activity">
     <div class="alert-icon">
       <img src="images/info.png" alt="">
     </div>
