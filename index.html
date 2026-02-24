@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stonefusion Dashboard</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="styles.css" />
+     <!-- <link rel="stylesheet" href="dark.css" /> -->
     <style>
             .big-chart-img {
               width: 100%;
@@ -270,7 +268,7 @@
 .search-wrap {
   margin: auto;
   position: relative;
-  width: 450px;
+  width: 420px;
 }
 
 /* Icon inside input */
@@ -291,7 +289,7 @@
   height: 38px;
   padding: 0 12px 0 38px; /* left padding for icon */
   border: 1px solid #dce4f0;
-  border-radius: 6px;
+  border-radius: 12px;
   font-size: 14px;
   outline: none;
 }
@@ -307,18 +305,126 @@
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.05);
   display: none;
-  max-height: 250px;
+  max-height: 270px;
   overflow-y: auto;
   z-index: 999;
 }
 
 .search-item {
+  color:black;
   padding: 10px 14px;
   cursor: pointer;
 }
 
 .search-item:hover {
   background: #f4f7fb;
+}
+
+.sidebar {
+
+  min-height: 100vh;
+  background: #fff;
+  border-right: 1px solid var(--stroke);
+  padding: 10px 12px;
+  overflow: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 2px 8px;
+}
+
+.stonefly-logo,
+.sidebar-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1;
+  color: #002d62;
+}
+
+.brand-text small {
+  color: #96a5b8;
+  font-size: 10px;
+}
+
+.menu p {
+  margin: 14px 0 6px;
+  color: #98a7bb;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.menu a,
+.menu-trigger {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  font-size: 12px;
+  color: #364153;
+  font-weight: 400;
+  line-height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu a.active {
+  background: #eaf1ff;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.menu-group {
+  margin-bottom: 2px;
+}
+
+.menu-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.caret {
+  margin-left: auto;
+  font-size: 12px;
+  color: #667085;
+}
+
+.menu-children {
+  display: none;
+  margin-left: 14px;
+  border-left: 1px solid #e4e7ec;
+  padding-left: 8px;
+}
+
+.menu-group.is-open > .menu-children {
+  display: block;
+}
+
+.menu-children a {
+  padding: 7px 8px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.menu-children a:hover,
+.menu-trigger:hover,
+.menu a:hover {
+  background: #f2f6ff;
 }
 
     </style>
@@ -336,92 +442,559 @@
         </div>
         <div class="dash-head">
           <span><img style="margin-top:5px;" src="images/expand.png" /></span>
-          <button>Expand All</button>
+          <button  id="toggleBtn">Expand All</button>
         </div>
-        <nav class="menu">
-          <p>Dashboard</p>
-          <a class="active">
-            <img class="sidebar-icon" src="images/dashboard.png" />
-            Dashboard
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/systemHealth.png" />
-            System Health
-          </a>
-          <p>Storage Services</p>
-          <a>
-            <img class="sidebar-icon" src="images/block storage.png" />
-            Block Storage
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/File Storage.png" />
-            File Storage
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/objectStorage.png" />
-            Object Storage
-          </a>
-          <p>Resources</p>
-          <a>
-            <img class="sidebar-icon" src="images/StoragePools.png" />
-            Storage Pools
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/LUNS.png" />
-            Volumes / LUNs
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/DiskandSSD.png" />
-            Disks & SSDs
-          </a>
-          <p>Performance</p>
-          <a>
-            <img class="sidebar-icon" src="images/metrics.png" />
-            Metrics
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/IOPs.png" />
-            IOPS
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/Througput.png" />
-            Throughput
-          </a>
-          <p>Security</p>
-          <a>
-            <img class="sidebar-icon" src="images/AccessControl.png" />
-            Access Control
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/Encryption.png" />
-            Encryption
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/Audit Logs.png" />
-            Audit Logs
-          </a>
-          <p>System</p>
-          <a>
-            <img class="sidebar-icon" src="images/ClusterStatus.png" />
-            Cluster Status
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/Nodes.png" />
-            Nodes
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/Logs.png" />
-            Logs
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/Setting.png" />
-            Settings
-          </a>
-          <a>
-            <img class="sidebar-icon" src="images/support.png" />
-            Support
-          </a>
-        </nav>
+         <nav class="menu">
+      <p>SAN</p>
+
+      <div
+       class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="true">
+          <span class="menu-label">
+            <i class="fa fa-database"></i>
+            <span>Volumes</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+            <a href="#"><i class="fa fa-plus-square-o"></i><span>Summary</span></a>
+            <a href="#"><i class="fa fa fa-hdd-o"></i><span>Replication Summary</span></a>
+        
+          <div class="menu-group">
+              <button class="menu-trigger" type="button" aria-expanded="true">
+                <span class="menu-label">
+                  <i class="fa fa-plus"></i>
+                  <span>Create New Volume</span>
+                </span>
+                <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+              </button>
+            <div class="menu-children">
+              <a href="#"><i class="fa fa-plus-square-o"></i><span>Auto Create</span></a>
+              <a href="#"><i class="fa fa-plus-square-o"></i><span>Manual Create</span></a>
+              <a href="#"><i class="fa fa-arrow-down"></i><span>Pass Thru</span></a>
+              <a href="#"><i class="fa fa-plus-square"></i><span>Thin Volume Create</span></a>
+              <a href="#"><i class="fa fa-plus-square"></i><span>NAS Segment Create</span></a>
+            </div>
+          </div>
+          <a href="#"><i class="fa fa-copy"></i><span>Create Deduplicated Volume</span></a>
+          <!-- Configure Volume -->
+          <div class="menu-group">
+              <button class="menu-trigger" type="button" aria-expanded="true">
+                <span class="menu-label">
+                  <i class="fa fa-wrench"></i>
+                  <span>Configure Volume</span>
+                </span>
+                <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+              </button>
+            <div class="menu-children">
+              <a href="#"><i class="fa fa-edit"></i><span>General Configuration</span></a>
+              <a href="#"><i class="fa fa-plus-square"></i><span>Expand Volume</span></a>
+                <!-- Add Image Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-image"></i>
+                      <span>Add Image</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-clone"></i><span>Synchronous</span></a>
+                    <a href="#"><i class="fa fa-clone"></i><span>Asynchronous</span></a>
+                    
+                  </div>
+                </div>
+                <!-- Add Image End -->
+                <!-- Manage Image Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-object-group"></i>
+                      <span>Manage Image</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-clone"></i><span>Synchronous</span></a>
+                    <a href="#"><i class="fa fa-clone"></i><span>Asynchronous</span></a>
+                    <a href="#"><i class="fa fa-ellipsis-v"></i><span>Thin Image</span></a>
+                    <a href="#"><i class="fa fa-copy"></i><span>Deduplicated Image</span></a>
+                  </div>
+                </div>
+                <!-- Manage Image End -->
+             
+                <!-- Manage Snapshot Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-database"></i>
+                      <span>Manage Snapshot</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-file-alt"></i><span>General</span></a>
+                    <a href="#"><i class="fa fa-calendar-check"></i><span>Schedule</span></a>
+                    <a href="#"><i class="fa fa-folder-open"></i><span>Detail</span></a>
+
+                  </div>
+                </div>
+                <!-- Manage  End -->
+                <!-- Volume Security Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-lock"></i>
+                      <span>Volume Security</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-shield-alt"></i><span>Access</span></a>
+                    <a href="#"><i class="fa fa-key"></i><span>Encryption Keys</span></a>
+                  </div>
+                </div>
+               <!-- Volume Security  End -->
+                <a href="#"><i class="fa fa-plus-square-o"></i><span>Manual Create</span></a>
+                <a href="#"><i class="fa fa-arrow-down"></i><span>Pass Thru</span></a>
+                <a href="#"><i class="fa fa-plus-square-o"></i><span>Thin Volume Create</span></a>
+                <a href="#"><i class="fa fa-plus-square-o"></i><span>NAS Segment Create</span></a>
+            </div>
+          </div>
+          <!-- End Configure Volume -->
+        </div>
+      </div>
+      <!-- Host Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-user"></i>
+            <span>Host</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa fa-folder"></i><span>Summary</span></a>
+          <a href="#"><i class="fa fa-clone"></i><span>Detail</span></a>
+          <a href="#"><i class="fa fa-file-text-o"></i><span>Host Access</span></a>
+           <a href="#"><i class="fa fa-plus"></i><span>Add New Host</span></a>
+        </div>
+      </div>
+      <!-- Host End -->
+      <a href="#">
+        <i class="fa fa-reorder"></i>
+        <span>Session</span>
+      </a>
+      <!-- Target Portal Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-arrows"></i>
+            <span>Target Portal</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-files-o"></i><span>Summary</span></a>
+          <a href="#"><i class="fa fa-clone"></i><span>Detail</span></a>
+          <a href="#"><i class="fa fa-camera"></i><span>Add New Target Portal</span></a>
+        </div>
+      </div>
+      <!-- Target Portal End -->
+      <a href="#">
+        <i class="fa fa-circle"></i>
+        <span>Fiber Channel</span>
+      </a>
+      <!-- Nas Started -->
+       <p>NAS</p>
+
+      <div
+       class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="true">
+          <span class="menu-label">
+            <i class="fa fa-database"></i>
+            <span>Volumes</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+            <a href="#"><i class="fa fa-plus-square-o"></i><span>Summary</span></a>
+            <!-- NAS Create New Volume -->
+          <div class="menu-group">
+              <button class="menu-trigger" type="button" aria-expanded="true">
+                <span class="menu-label">
+                  <i class="fa fa-plus"></i>
+                  <span>Create New Volume</span>
+                </span>
+                <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+              </button>
+            <div class="menu-children">
+              <a href="#"><i class="fa fa-plus-square-o"></i><span>Share</span></a>
+              <a href="#"><i class="fa fa-plus-square-o"></i><span>Allocate</span></a>
+              <a href="#"><i class="fa fa-arrow-down"></i><span>Attatch</span></a>
+              <a href="#"><i class="fa fa-plus-square-o"></i><span>Disperse</span></a>
+              <a href="#"><i class="fa fa-plus-square-o"></i><span>S3 NAS</span></a>
+            </div>
+          </div>
+          <a href="#"><i class="fa fa-plus-square-o"></i><span>Create Deduplicated Volume</span></a>
+          <!-- Configure Volume -->
+          <div class="menu-group">
+              <button class="menu-trigger" type="button" aria-expanded="true">
+                <span class="menu-label">
+                  <i class="fa fa-wrench"></i>
+                  <span>Configure Volume</span>
+                </span>
+                <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+              </button>
+            <div class="menu-children">
+              <a href="#"><i class="fa fa-edit"></i><span>General Configuration</span></a>
+              <a href="#"><i class="fa fa-plus-square"></i><span>Expand Volume</span></a>
+                <!-- Add Image Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-image"></i>
+                      <span>Add Image</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-clone"></i><span>Synchronous</span></a>
+                    <a href="#"><i class="fa fa-clone"></i><span>Asynchronous</span></a>
+                    <a href="#"><i class="fa fa-ellipsis-v"></i><span>Thin Image</span></a>
+                    <a href="#"><i class="fa fa-copy"></i><span>Duplicated Image</span></a>
+                  </div>
+                </div>
+                <!-- Add Image End -->
+                <!-- Manage Image Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-object-group"></i>
+                      <span>Manage Image</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-clone"></i><span>Synchronous</span></a>
+                    <a href="#"><i class="fa fa-clone"></i><span>Asynchronous</span></a>
+                    
+                  </div>
+                </div>
+                <!-- Manage Image End -->
+             
+                <!-- Manage Snapshot Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-edit"></i>
+                      <span>Snapshot Management</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-file"></i><span>General</span></a>
+                    <a href="#"><i class="fa fa-calendar"></i><span>Schedule</span></a>
+                    <a href="#"><i class="fa fa-folder-open"></i><span>Detail</span></a>
+
+                  </div>
+                </div>
+                <!-- Manage  End -->
+                <!-- Volume Security Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-database"></i>
+                      <span>S3 Storage</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Summary</span></a>
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Create / Modify S3 EP</span></a>
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Create S3 NAS Volume</span></a>
+                  </div>
+                </div>
+               <!-- Volume Security  End -->
+                <!-- Volume Expand Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-database"></i>
+                      <span>Expand</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Volume Locally</span></a>
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Scale Out Disperse Volume</span></a>
+                  </div>
+                </div>
+               <!-- Volume Expand  End -->
+                <a href="#"><i class="fa fa-plus-square-o"></i><span>Rename Volume</span></a>
+                <a href="#"><i class="fa fa-arrow-down"></i><span>GIFs Access</span></a>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+      <!-- GIFs User Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-users"></i>
+            <span>GIFs Users</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-dashboard"></i><span>Summary</span></a>
+          <a href="#"><i class="fa fa-shield"></i><span>User Access</span></a>
+          <a href="#"><i class="fa fa-plus"></i><span>Add Update User</span></a>
+           
+        </div>
+      </div>
+      <!-- GIFs User End -->
+       <!-- Segment Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-hdd-o"></i>
+            <span>Segment</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-files-o"></i><span>Summary</span></a>
+          <a href="#"><i class="fa fa-plus"></i><span>Segment Create</span></a>
+        </div>
+      </div>
+      <!-- Segment End -->
+        <!-- Antivirus Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-desktop"></i>
+            <span>Antivirus</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-pencil-square"></i><span>AV Configuration / Status</span></a>
+          <a href="#"><i class="fa fa-plus"></i><span>AV Engine Information</span></a>
+          <a href="#"><i class="fa fa-plus"></i><span>AV Scan Schedule</span></a>
+        </div>
+      </div>
+      <!-- Antivirus End -->
+           <!-- Scale Out Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-arrows"></i>
+            <span>Scale Out</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-files-o"></i><span>Summary</span></a>
+              <!-- Scale Out Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-folder-open-o"></i>
+            <span>Segment</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-files-o"></i><span>Summary</span></a>
+         <!-- Segment Assignment Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-plus"></i>
+                      <span>Segment Assignment</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Per Volume</span></a>
+                    <a href="#"><i class="fa fa-leaf"></i><span>Per Node</span></a>
+                  </div>
+                </div>
+               <!-- Segment Assignment  End -->
+                   <!-- Segment Replacement Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-exchange"></i>
+                      <span>Segment Replacement</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-check-circle"></i><span>Status</span></a>
+                    <a href="#"><i class="fa fa-plus-square"></i><span>Initiate</span></a>
+                  </div>
+                </div>
+               <!-- Segment Replacement End -->
+                     <!-- Segment Migration Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-exchange"></i>
+                      <span>Segment Migration</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Volume Locally</span></a>
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Scale Out Disperse Volume</span></a>
+                  </div>
+                </div>
+               <!-- Segment Migration End -->
+              <!--Remove Segment Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-exchange"></i>
+                      <span>Segment Remove</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Volume Locally</span></a>
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Scale Out Disperse Volume</span></a>
+                  </div>
+                </div>
+               <!-- Remove Segment End -->
+                <!--Remove Segment Start -->
+                <div class="menu-group">
+                  <button class="menu-trigger" type="button" aria-expanded="true">
+                    <span class="menu-label">
+                      <i class="fa fa-exchange"></i>
+                      <span>Segment Remove</span>
+                    </span>
+                    <i class="fa fa-angle-down caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu-children">
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Volume Locally</span></a>
+                    <a href="#"><i class="fa fa-plus-square-o"></i><span>Scale Out Disperse Volume</span></a>
+                  </div>
+                </div>
+               <!-- Remove Segment End -->
+                <a href="#"><i class="fa fa fa-share"></i><span>Shared Matadata</span></a>
+                <a href="#"><i class="fa fa-check-circle-o"></i><span>Disperse Status</span></a>
+                <a href="#"><i class="fa fa-check-circle-o"></i><span>Replica Status</span></a>
+        </div>
+      </div>
+      <!-- ScaleOut End -->
+          <a href="#"><i class="fa fa-plus"></i><span>AV Scan Schedule</span></a>
+        </div>
+      </div>
+       
+     
+      <a href="#">
+        <i class="fa fa-cubes"></i>
+        <span>Fiber Channel</span>
+      </a>
+      <!-- NAS Ended -->
+      <p>Resources</p>
+      <!-- Resources Start -->
+          <a href="#"><i class="fa fa-list"></i><span>Summary</span></a>
+          <a href="#"><i class="fa fa-folder"></i><span>Detail</span></a>
+          <a href="#"><i class="fa fa-plus"></i><span>Create Flash Cache</span></a>
+          <a href="#"><i class="fa fa-wrench"></i><span>Create Flash Configuration</span></a>
+          <a href="#"><i class="fa fa-plus"></i><span>Create Storage</span></a>
+      <!-- Resources End -->
+
+      <p>System</p>
+      <a href="#"><i class="fa fa-desktop"></i><span>Information</span></a>
+      
+      <!-- Admin Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-user"></i>
+            <span>Admin</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-files-o"></i><span>General</span></a>
+          <a href="#"><i class="fa fa-database"></i><span>iSNS</span></a>
+          <a href="#"><i class="fa fa-floppy-o"></i><span>Auto Save</span></a>
+          <a href="#"><i class="fa fa-undo"></i><span>Restore</span></a>
+          <a href="#"><i class="fa fa-exclamation-triangle"></i><span>Failover</span></a>
+          <a href="#"><i class="fa fa-id-badge"></i><span>Licensing</span></a>
+          <a href="#"><i class="fa fa-desktop"></i><span>System Monitoring</span></a>
+          <a href="#"><i class="fa fa-server"></i><span>NAS Server</span></a>
+          <a href="#"><i class="fa fa-server"></i><span>DNS Server</span></a>
+          
+        </div>
+      </div>
+      <!-- Admin End -->
+       <!-- Network Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-file"></i>
+            <span>Network</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-filter"></i><span>Data Port</span></a>
+          <a href="#"><i class="fa fa-industry"></i><span>Management Port</span></a>
+          <a href="#"><i class="fa fa-signal"></i><span>Routing</span></a>
+          <a href="#"><i class="fa fa-wrench"></i><span>Pre-relocation Check</span></a>
+          <a href="#"><i class="fa fa-wrench"></i><span>Post-relocation Check</span></a>
+         
+          
+        </div>
+      </div>
+      <!-- Network End -->
+      <a href="#"><i class="fa fa-thermometer-half"></i><span>Diagonistic</span></a>
+         <!-- Network Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-bell"></i>
+            <span>Notification</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-files-o"></i><span>E-mail</span></a>
+          <a href="#"><i class="fa fa-database"></i><span>SNMP</span></a>          
+        </div>
+      </div>
+      <!-- Network End -->
+       <a href="#"><i class="fa fa-battery-half"></i><span>UPS</span></a> 
+      <!-- User Start -->
+      <div class="menu-group">
+        <button class="menu-trigger" type="button" aria-expanded="false">
+          <span class="menu-label">
+            <i class="fa fa-users"></i>
+            <span>User</span>
+          </span>
+          <i class="fa fa-angle-right caret" aria-hidden="true"></i>
+        </button>
+        <div class="menu-children">
+          <a href="#"><i class="fa fa-file"></i><span>Summary</span></a>
+          <a href="#"><i class="fa fa-folder"></i><span>Detail</span></a> 
+          <a href="#"><i class="fa fa-plus"></i><span>Add User</span></a>          
+        </div>
+      </div>
+      <!-- User End -->
+      <p>Reports</p>
+      <a href="#"><i class="fa fa-file"></i><span>Log</span></a>
+      <a href="#"><i class="fa fa-file-excel-o"></i><span>Configuration Report</span></a>
+      <a href="#"><i class="fa fa-line-chart"></i><span>Historical Statistics</span></a>
+      <a href="#"><i class="fa fa-file-text-o"></i><span>Debug Logs</span></a>
+      <a href="#"><i class="fa fa-area-chart"></i><span>Live Statistics</span></a>
+    
+    </nav>
       </aside>
 
       <div class="right-fixed">
@@ -432,7 +1005,7 @@
 
       <main class="main">
         <header class="topbar">
-          <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+          <div class="menu-icon"><i class="fa fa-bars"></i></div>
           <div class="meta">
             <b>Serial Number</b>
             D5954956
@@ -490,7 +1063,7 @@
                     <div class="kpi-row">
 
                         <div class="kpi-header">
-                          <span class="kpi-title">Memory</span>
+                          <span class="kpi-title">OS DISK</span>
                           <span class="kpi-value">63%</span>
                         </div>
 
@@ -563,7 +1136,7 @@
                 <div class="kpis-gauge">
                   <div>
                     <p>
-                      Memory
+                      OS Disk
                       <br />
                       <small>Read / Write</small>
                     </p>
@@ -1107,6 +1680,34 @@ document.addEventListener("click", (e) => {
     dropdown.style.display = "none";
   }
 });
+    document.querySelectorAll('.menu-trigger').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const group = btn.closest('.menu-group');
+        const open = group.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', String(open));
+        const caret = btn.querySelector('.caret');
+        caret.classList.toggle('fa-angle-down', open);
+        caret.classList.toggle('fa-angle-right', !open);
+      });
+    });
+      const toggleBtn = document.getElementById("toggleBtn");
+  const formGroups = document.querySelectorAll(".menu-group");
+
+  toggleBtn.addEventListener("click", function () {
+    const isOpen = toggleBtn.classList.contains("active");
+
+    if (!isOpen) {
+      // Add 'is-open' class
+      formGroups.forEach(group => group.classList.add("is-open"));
+      toggleBtn.textContent = "Close All";
+      toggleBtn.classList.add("active");
+    } else {
+      // Remove 'is-open' class
+      formGroups.forEach(group => group.classList.remove("is-open"));
+      toggleBtn.textContent = "Expand All";
+      toggleBtn.classList.remove("active");
+    }
+  });
 </script>
 
 

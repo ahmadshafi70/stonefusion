@@ -877,3 +877,51 @@ td {
 .bg-chart-img {
   width: 100%;
 }
+/* ===== SIDEBAR BACKGROUND ===== */
+.dark .sidebar {
+  background: #ffffff !important;
+}
+
+/* ===== ALL MENU TEXT ===== */
+.sidebar,
+.sidebar a,
+.sidebar button,
+.sidebar span,
+.sidebar p {
+  color: #ffffff !important;
+}
+
+/* ===== ALL FONT AWESOME ICONS ===== */
+.sidebar i.fa {
+  color: #ffffff !important;
+}
+
+/* ===== CARET ICONS ===== */
+.sidebar .caret {
+  color: #ffffff !important;
+}
+
+/* ===== MENU TRIGGER BUTTONS ===== */
+.dark .sidebar .menu-trigger {
+  background: transparent;
+  color: #ffffff !important;
+}
+
+/* ===== HOVER FIX (optional) ===== */
+.sidebar a:hover,
+.sidebar .menu-trigger:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.sidebar [class^='fa'],
+.sidebar [class*=' fa-'] {
+  color: #ffffff !important;
+}
+.sidebar {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 40, 0.95) 0%,
+    rgba(35, 45, 74, 0.95) 50%,
+    rgba(17, 24, 40, 0.95) 100%
+  ) !important;
+  background-color: transparent !important;
+}
